@@ -8,12 +8,12 @@
   display: inline-block;
   padding: 1rem 3em;
   transition: all 0.3s ease;
-  border: 0.1rem solid $primaryColor;
+  border: 0.1rem solid $tertiaryColor;
   border-radius: 1;
-  background-color: $primaryColor;
+  background-color: $tertiaryColor;
   box-shadow: 3px 3px 2px 0 rgba(0, 0, 0, 0.3);
   color: $whiteColor;
-  font-family: $primaryFont;
+  font-family: $secondaryFont;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
@@ -29,8 +29,8 @@
 
   &:hover {
     cursor: pointer;
-    background-color: $tertiaryColor;
-    border-color: $tertiaryColor;
+    background-color: $primaryColor;
+    border-color: $primaryColor;
     color: $whiteColor;
   }
 
@@ -59,8 +59,8 @@
 
   &:hover {
     cursor: pointer;
-    background-color: $tertiaryColor;
-    border-color: $tertiaryColor;
+    background-color: $primaryColor;
+    border-color: $primaryColor;
     color: $whiteColor;
   }
 }

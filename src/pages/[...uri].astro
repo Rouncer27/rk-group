@@ -67,6 +67,10 @@ const templateName = page?.template?.templateName?.toLowerCase() ?? "default";
 let TemplateComponent;
 
 switch (true) {
+  case templateName.includes("home"):
+    TemplateComponent = (await import("../templates/HomeTemplate.astro"))
+      .default;
+    break;
   case templateName.includes("about"):
     TemplateComponent = (await import("../templates/AboutTemplate.astro"))
       .default;
