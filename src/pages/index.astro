@@ -1,44 +1,41 @@
 ---
-import Button from "../components/common/shared/Button.astro";
-import Headline from "../components/common/shared/Headline.astro";
-import Paragraph from "../components/common/shared/Paragraph.astro";
-import Wrapper from "../components/common/shared/Wrapper.astro";
 import Layout from "../layouts/Layout.astro";
+import PageIntro from "../components/Home/PageIntro/PageIntro.astro";
+
+import { Page_Seo_Query } from "../data/page/queries";
+import { Page_Intro_Query } from "../data/home/queries";
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+		  query homePageQuery {
+		    page(id: "/", idType: URI) {
+          ${Page_Seo_Query}
+            homeTemplate {
+              ${Page_Intro_Query}
+            }
+          }
+        }
+	  `,
+  }),
+});
+
+const {
+  data: {
+    page: { seoMetaTags, homeTemplate },
+  },
+} = await response.json();
 ---
 
-<Layout>
-  <h1>RK Group</h1>
-  <Wrapper>
-    <div>
-      <Headline ele="h1" hlstyle="one"
-        >Aliquam tincidunt mauris eu risus.</Headline
-      >
-      <Headline ele="h2" hlstyle="two"
-        >Aliquam tincidunt mauris eu risus.</Headline
-      >
-      <Headline ele="h3" hlstyle="three"
-        >Aliquam tincidunt mauris eu risus.</Headline
-      >
-      <Paragraph ele="p" pstyle="one"
-        >Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae
-        luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing,
-        commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit
-        tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices
-        sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl.
-        Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</Paragraph
-      >
-      <Paragraph ele="p" pstyle="two"
-        >Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae
-        luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing,
-        commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit
-        tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices
-        sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl.
-        Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</Paragraph
-      >
-      <Button ele="a" hfre="/" btnstyle="one">Click Here</Button>
-      <Button ele="a" hfre="/" btnstyle="two">Click Here</Button>
-      <Button ele="button" hfre="/" btnstyle="one">Click Here</Button>
-      <Button ele="button" hfre="/" btnstyle="two">Click Here</Button>
-    </div>
-  </Wrapper>
+<Layout
+  metaImg={seoMetaTags.seoMetaInformation.metaImage.sourceUrl}
+  metaTitle={seoMetaTags.seoMetaInformation.metaTitle}
+  metaDescription={seoMetaTags.seoMetaInformation.metaDescription}
+  isHome={true}
+>
+  <PageIntro data={homeTemplate.pageIntro} />
 </Layout>

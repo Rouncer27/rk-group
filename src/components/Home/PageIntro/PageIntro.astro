@@ -1,0 +1,32 @@
+---
+import Headline from "../../common/shared/Headline.astro";
+import Wrapper from "../../common/shared/Wrapper.astro";
+import "./pageIntro.scss";
+import { Image } from "astro:assets";
+
+const { image, title, content } = Astro.props.data;
+
+const heroImageSrc = image?.node?.sourceUrl;
+const heroAlt = image?.node?.altText || "";
+---
+
+<div class="home-page-intro">
+  <Wrapper classes="home-page-intro-wrapper">
+    <div class="home-page-intro-title">
+      <Headline ele="h1" hlstyle="one">{title}</Headline>
+    </div>
+    <div class="home-page-intro-content" set:html={content} />
+    <div class="home-page-intro-image">
+      <Image
+        src={heroImageSrc}
+        alt={heroAlt}
+        format="webp"
+        widths={[800, 1200, 1600, 2000]}
+        sizes="100vw"
+        loading="eager"
+        inferSize={true}
+        class=""
+      />
+    </div>
+  </Wrapper>
+</div>
