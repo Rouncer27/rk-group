@@ -2,9 +2,14 @@
 import Layout from "../layouts/Layout.astro";
 import PageIntro from "../components/Home/PageIntro/PageIntro.astro";
 import ImageByContent from "../components/Home/ImageByContent/ImageByContent.astro";
+import Difference from "../components/Home/Difference/Difference.astro";
 
 import { Page_Seo_Query } from "../data/page/queries";
-import { Page_Intro_Query, Image_By_Content_Query } from "../data/home/queries";
+import {
+  Page_Intro_Query,
+  Image_By_Content_Query,
+  Difference_Query,
+} from "../data/home/queries";
 
 const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   method: "POST",
@@ -19,6 +24,7 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
             homeTemplate {
               ${Page_Intro_Query}
 			  ${Image_By_Content_Query}
+			  ${Difference_Query}
             }
           }
         }
@@ -41,4 +47,5 @@ const {
 >
   <PageIntro data={homeTemplate.pageIntro} />
   <ImageByContent data={homeTemplate.imageByContent} />
+  <Difference data={homeTemplate.difference} />
 </Layout>

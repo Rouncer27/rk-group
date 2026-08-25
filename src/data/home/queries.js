@@ -33,3 +33,13 @@ export const Image_By_Content_Query = `
         }
     }
 `;
+
+export const Difference_Query = `
+    difference: differenceComponent {
+        title
+        points {
+            title
+            content
+        }
+    }
+`;

@@ -71,22 +71,23 @@ h6 {
 
 p {
   font-family: var.$primaryFont;
-  @include utils.font-sizer(1.8, 2.1, 76.8, 150, 1.8);
+  @include utils.font-sizer(2, 2.4, 76.8, 150, 2);
   margin: 0;
   margin-bottom: 1.5em;
-  font-weight: normal;
+  font-weight: 500;
   font-stretch: normal;
   font-style: normal;
   letter-spacing: normal;
-  line-height: 1.33;
+  line-height: 1.4;
 }
 
 a {
-  @include utils.font-sizer(1.8, 2.1, 76.8, 150, 1.8);
+  @include utils.font-sizer(2, 2.4, 76.8, 150, 2);
   text-decoration: none;
   color: var.$primaryColor;
-  font-weight: normal;
+  font-weight: 500;
   transition: all 0.3s ease;
+  line-height: 1.4;
 }
 
 a:hover {
