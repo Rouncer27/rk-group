@@ -29,4 +29,64 @@
       }
     }
   }
+
+  &-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10rem;
+  }
+
+  &-service {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: calc((100% / 3) - 2rem);
+    margin: 5rem 1rem;
+
+    &-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+
+      &-image {
+        width: calc(50% - 1rem);
+        margin-right: 1rem;
+        border-radius: 2rem;
+        overflow: hidden;
+      }
+
+      &-title {
+        width: calc(50% - 1rem);
+        margin-left: 1rem;
+
+        h3 {
+          @extend .hl-two;
+          color: $whiteColor;
+        }
+      }
+    }
+
+    &-excerpt {
+      width: 100%;
+      margin-top: 4rem;
+
+      p {
+        @extend .p-two;
+        color: $whiteColor;
+      }
+
+      &-link {
+        width: 100%;
+
+        a {
+          @extend .p-two;
+          color: $whiteColor;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
 }

@@ -1,9 +1,13 @@
 ---
+// @ts-ignore
+// @ts-nocheck
+import Button from "../../common/shared/Button.astro";
 import Wrapper from "../../common/shared/Wrapper.astro";
 import "./servicesDisplay.scss";
 import { Image } from "astro:assets";
 
 const { displayServices, logo, title } = Astro.props.data;
+const services = Astro.props.services.edges;
 
 const imageSrc = logo?.node?.sourceUrl;
 const imageAlt = logo?.node?.altText || "";
@@ -12,7 +16,7 @@ const imageAlt = logo?.node?.altText || "";
 {
   displayServices ? (
     <div class="services-display">
-      <Wrapper classes="services-display-wrapper">
+      <Wrapper wrapType="big" classes="services-display-wrapper">
         <div class="services-display-header">
           <div class="services-display-header-logo">
             <Image
@@ -29,6 +33,42 @@ const imageAlt = logo?.node?.altText || "";
           <div class="services-display-header-title">
             <h2>{title}</h2>
           </div>
+        </div>
+        <div class="services-display-container">
+          {services.map((service) => {
+            const serviceImageSrc =
+              service.node.servicesPost.excerptImage?.node?.sourceUrl;
+            const serviceImageAlt =
+              service.node.servicesPost.excerptImage?.node?.altText || "";
+
+            return (
+              <div class="services-display-service">
+                <div class="services-display-service-header">
+                  <div class="services-display-service-header-image">
+                    <Image
+                      src={serviceImageSrc}
+                      alt={serviceImageAlt}
+                      format="webp"
+                      widths={[800, 1200, 1600, 2000]}
+                      sizes="100vw"
+                      loading="eager"
+                      inferSize={true}
+                      class=""
+                    />
+                  </div>
+                  <div class="services-display-service-header-title">
+                    <h3>{service.node.title}</h3>
+                  </div>
+                </div>
+                <div class="services-display-service-excerpt">
+                  <div set:html={service.node.servicesPost.excerpt} />
+                  <div class="services-display-service-excerpt-link">
+                    <a href="/">Learn More</a>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </Wrapper>
     </div>

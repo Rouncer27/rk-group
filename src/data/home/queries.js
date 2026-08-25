@@ -60,3 +60,24 @@ export const Services_Display_Query = `
         }
     }
 `;
+
+export const All_Services_Query = `
+    services: services(first: 999999) {
+        edges {
+            node {
+                slug
+                title
+                servicesPost {
+                    excerpt
+                    excerptImage {
+                        node {
+                            altText
+                            sourceUrl
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+`;

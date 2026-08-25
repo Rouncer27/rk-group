@@ -11,6 +11,7 @@ import {
   Image_By_Content_Query,
   Difference_Query,
   Services_Display_Query,
+  All_Services_Query,
 } from "../data/home/queries";
 
 const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
@@ -20,16 +21,17 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   },
   body: JSON.stringify({
     query: `
-		  query homePageQuery {
+		query homePageQuery {
 		    page(id: "/", idType: URI) {
-          ${Page_Seo_Query}
-            homeTemplate {
-              ${Page_Intro_Query}
-			  ${Image_By_Content_Query}
-			  ${Difference_Query}
-			  ${Services_Display_Query}
-            }
-          }
+          		${Page_Seo_Query}
+            	homeTemplate {
+              		${Page_Intro_Query}
+			  		${Image_By_Content_Query}
+			  		${Difference_Query}
+			  		${Services_Display_Query}
+            	}
+          	}
+			${All_Services_Query}
         }
 	  `,
   }),
@@ -37,6 +39,7 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 
 const {
   data: {
+    services,
     page: { seoMetaTags, homeTemplate },
   },
 } = await response.json();
@@ -51,5 +54,5 @@ const {
   <PageIntro data={homeTemplate.pageIntro} />
   <ImageByContent data={homeTemplate.imageByContent} />
   <Difference data={homeTemplate.difference} />
-  <ServicesDisplay data={homeTemplate.servicesDisplay} />
+  <ServicesDisplay data={homeTemplate.servicesDisplay} services={services} />
 </Layout>
