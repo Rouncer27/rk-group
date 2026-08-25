@@ -1,0 +1,66 @@
+@use "../styles/abstracts/" as *;
+@use "../styles/global/paragraphs";
+
+.footer {
+  position: relative;
+
+  &-wrapper {
+    align-items: center;
+  }
+
+  &-logo {
+    width: calc(100%);
+    margin-bottom: 3rem;
+    text-align: center;
+
+    @media (min-width: 768px) {
+      width: calc(10rem);
+      margin-bottom: 0;
+      padding: 0;
+      text-align: left;
+    }
+
+    h2 {
+      margin: 0;
+    }
+
+    img {
+      max-width: 10rem;
+      margin: auto;
+    }
+  }
+
+  &-social {
+    width: calc(100%);
+    margin-bottom: 2.5rem;
+
+    @media (min-width: 768px) {
+      width: calc(12.5%);
+      margin-bottom: 0;
+    }
+  }
+
+  &-nav {
+    width: calc(100%);
+
+    @media (min-width: 768px) {
+      width: calc(87.5% - 18rem);
+      margin-right: 3rem;
+      margin-left: 5rem;
+    }
+  }
+
+  &-policy {
+    width: calc(100%);
+    text-align: center;
+
+    a {
+      @extend .p-three;
+      color: $tertiaryColor;
+
+      &:hover {
+        color: $primaryColor;
+      }
+    }
+  }
+}

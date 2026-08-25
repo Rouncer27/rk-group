@@ -16,7 +16,7 @@ export default defineConfig({
   site: "https://rk-group.ca/",
   integrations: [react(), sitemap()],
   image: {
-    domains: ["rk-group.swbdatabases3.ca/"],
-    remotePatterns: [{ protocol: "https" }],
+    domains: ["rk-group.swbdatabases3.com/"],
+    remotePatterns: [{ protocol: "http" }],
   },
 });

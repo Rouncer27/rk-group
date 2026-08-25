@@ -1,5 +1,5 @@
 export const handler = async function (req, context) {
-  const FORM_POST_URL = `https://rk-group.swbdatabases3.ca/wp-json/contact-form-7/v1/contact-forms/334/feedback`;
+  const FORM_POST_URL = `https://rk-group.swbdatabases3.com/wp-json/contact-form-7/v1/contact-forms/334/feedback`;
   const formData = JSON.parse(req.body);
 
   const bodyFormData = new FormData();
