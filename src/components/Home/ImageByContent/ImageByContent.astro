@@ -1,0 +1,49 @@
+---
+// @ts-ignore
+// @ts-nocheck
+import "./imageByContent.scss";
+import { Image } from "astro:assets";
+import Wrapper from "../../common/shared/Wrapper.astro";
+
+const { section } = Astro.props.data;
+---
+
+<div class="image-content">
+  <Wrapper wrapType="big" classes="image-content-wrapper">
+    {
+      section.map((sec, index) => {
+        const imageSrc = sec.image?.node?.sourceUrl;
+        const imageAlt = sec.image?.node?.altText || "";
+        return (
+          <div
+            class={`image-content-block${index % 2 === 0 ? "" : " image-content-block-reverse"}${index + 1 === section.length ? " image-content-block-last" : ""}`}
+          >
+            <div class="image-content-block-main">
+              <div class="image-content-block-main-title">
+                <h2 set:html={sec.title} />
+              </div>
+              <div
+                class="image-content-block-main-content"
+                set:html={sec.content}
+              />
+            </div>
+            <div class="image-content-block-image">
+              <div class="image-content-block-image-container">
+                <Image
+                  src={imageSrc}
+                  alt={imageAlt}
+                  format="webp"
+                  widths={[800, 1200, 1600, 2000]}
+                  sizes="100vw"
+                  loading="eager"
+                  inferSize={true}
+                  class=""
+                />
+              </div>
+            </div>
+          </div>
+        );
+      })
+    }
+  </Wrapper>
+</div>
