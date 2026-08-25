@@ -43,3 +43,20 @@ export const Difference_Query = `
         }
     }
 `;
+
+export const Services_Display_Query = `
+    servicesDisplay: servicesDisplayComponent {
+        displayServices
+        title
+        logo {
+            node {
+                sourceUrl
+                altText
+                mediaDetails {
+                    width
+                    height
+                }
+            }
+        }
+    }
+`;

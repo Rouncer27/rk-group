@@ -1,0 +1,36 @@
+---
+import Wrapper from "../../common/shared/Wrapper.astro";
+import "./servicesDisplay.scss";
+import { Image } from "astro:assets";
+
+const { displayServices, logo, title } = Astro.props.data;
+
+const imageSrc = logo?.node?.sourceUrl;
+const imageAlt = logo?.node?.altText || "";
+---
+
+{
+  displayServices ? (
+    <div class="services-display">
+      <Wrapper classes="services-display-wrapper">
+        <div class="services-display-header">
+          <div class="services-display-header-logo">
+            <Image
+              src={imageSrc}
+              alt={imageAlt}
+              format="webp"
+              widths={[800, 1200, 1600, 2000]}
+              sizes="100vw"
+              loading="eager"
+              inferSize={true}
+              class=""
+            />
+          </div>
+          <div class="services-display-header-title">
+            <h2>{title}</h2>
+          </div>
+        </div>
+      </Wrapper>
+    </div>
+  ) : null
+}
