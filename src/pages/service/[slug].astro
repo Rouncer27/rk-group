@@ -2,6 +2,10 @@
 // @ts-ignore
 // @ts-nocheck
 import Layout from "../../layouts/Layout.astro";
+import ServiceHeader from "../../components/Service/ServiceHeader/ServiceHeader.astro";
+import ServiceContent from "../../components/Service/ServiceContent/ServiceContent.astro";
+import ServiceImages from "../../components/Service/ServiceImages/ServiceImages.astro";
+import ServiceNavigation from "../../components/Service/ServiceNavigation/ServiceNavigation.astro";
 
 import { Page_Seo_Query } from "../../data/page/queries";
 
@@ -57,30 +61,30 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   },
   body: JSON.stringify({
     query: `
-    query serviceQuery($id: ID!) {
-      service(idType: URI, id: $id) {
-        ${Page_Seo_Query}
-        title
-        date
-        slug
-        servicesPost {
-          mainTitle
-          mainContent
-          images {
-            image  {
-              node {
-                sourceUrl
-                altText
-                mediaDetails {
-                    width
-                    height
+      query serviceQuery($id: ID!) {
+        service(idType: URI, id: $id) {
+          ${Page_Seo_Query}
+          title
+          date
+          slug
+          servicesPost {
+            mainTitle
+            mainContent
+            images {
+              image  {
+                node {
+                  sourceUrl
+                  altText
+                  mediaDetails {
+                      width
+                      height
+                  }
                 }
               }
             }
           }
         }
       }
-    }
     `,
     variables: {
       id: Astro.params["slug"],
@@ -98,5 +102,13 @@ const {
   metaTitle={service.seoMetaTags.seoMetaInformation.metaTitle}
   metaDescription={service.seoMetaTags.seoMetaInformation.metaDescription}
 >
-  <h1>{service.title}</h1>
+  <ServiceHeader />
+  <ServiceContent
+    data={{
+      title: service.servicesPost.mainTitle,
+      content: service.servicesPost.mainContent,
+    }}
+  />
+  <ServiceImages />
+  <ServiceNavigation />
 </Layout>

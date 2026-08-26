@@ -1,0 +1,18 @@
+---
+import Wrapper from "../../common/shared/Wrapper.astro";
+import Wysiwyg from "../../common/shared/Wysiwyg.astro";
+import "./serviceContent.scss";
+
+const { title, content } = Astro.props.data;
+---
+
+<div class="service-content">
+  <Wrapper classes="service-content-wrapper">
+    <div class="service-content-title">
+      <h1>{title}</h1>
+    </div>
+    <Wysiwyg classes="service-content-main">
+      <div set:html={content} />
+    </Wysiwyg>
+  </Wrapper>
+</div>

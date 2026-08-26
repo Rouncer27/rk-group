@@ -1,0 +1,38 @@
+@use "../../../styles/abstracts/" as *;
+@use "../../../styles/global/headlines";
+@use "../../../styles/global/paragraphs";
+
+.service-content {
+  background-color: $tertiaryColor;
+
+  &-title {
+    width: 100%;
+    margin-bottom: 5rem;
+
+    h1 {
+      @extend .hl-one;
+      color: $whiteColor;
+      text-transform: uppercase;
+    }
+  }
+
+  &-main {
+    width: 100%;
+
+    p,
+    a,
+    ul,
+    li {
+      @extend .p-two;
+      color: $whiteColor;
+    }
+
+    li {
+      color: $whiteColor !important;
+
+      &::before {
+        color: $whiteColor !important;
+      }
+    }
+  }
+}

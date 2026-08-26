@@ -63,7 +63,7 @@ const imageAlt = logo?.node?.altText || "";
                 <div class="services-display-service-excerpt">
                   <div set:html={service.node.servicesPost.excerpt} />
                   <div class="services-display-service-excerpt-link">
-                    <a href="/">Learn More</a>
+                    <a href={`/service/${service.node.slug}`}>Learn More</a>
                   </div>
                 </div>
               </div>

@@ -1,0 +1,19 @@
+@use "../../../styles/abstracts/" as *;
+@use "../../../styles/global/headlines";
+@use "../../../styles/global/paragraphs";
+
+.service-header {
+  padding: 2.5rem;
+  background-color: $accentColor;
+
+  &-title {
+    width: 100%;
+    text-align: center;
+
+    h2 {
+      @extend .hl-one;
+      color: $tertiaryColor;
+      text-transform: uppercase;
+    }
+  }
+}
