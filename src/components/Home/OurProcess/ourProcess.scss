@@ -3,10 +3,20 @@
 @use "../../../styles/global/paragraphs";
 
 .our-process {
+  position: relative;
   padding: 5rem 0;
 
   &-wrapper {
     max-width: 110rem !important;
+  }
+
+  &-logo-icon {
+    position: absolute;
+    top: -5rem;
+    left: -5rem;
+    width: 60.27rem;
+    height: 57.02rem;
+    z-index: -1;
   }
 
   &-title {

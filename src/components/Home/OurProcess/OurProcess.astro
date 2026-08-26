@@ -7,6 +7,8 @@ import "./ourProcess.scss";
 
 import { Image } from "astro:assets";
 
+import logoIcon from "../../../assets/logo-icon.png";
+
 const { title, steps } = Astro.props.data;
 ---
 
@@ -20,6 +22,7 @@ const { title, steps } = Astro.props.data;
         steps.map((step, index) => {
           const imageSrc = step.icon?.node?.sourceUrl;
           const imageAlt = step.icon?.node?.altText || "";
+
           return (
             <div class="our-process-step">
               <div class="our-process-step-innner">
@@ -48,6 +51,9 @@ const { title, steps } = Astro.props.data;
           );
         })
       }
+    </div>
+    <div class="our-process-logo-icon">
+      <img src={logoIcon.src} alt={"RK Group"} />
     </div>
   </Wrapper>
 </div>
