@@ -144,3 +144,21 @@ export const Safety_Matters_Query = `
         }
     }
 `;
+
+export const Ready_Query = `
+    ready: readyComponent {
+        title
+        content
+        contactInformation
+        mainLogo {
+            node {
+                sourceUrl
+                altText
+                mediaDetails {
+                    width
+                    height
+                }
+            }
+        }
+    }
+`;

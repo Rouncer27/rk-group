@@ -1,0 +1,35 @@
+---
+import Wrapper from "../../common/shared/Wrapper.astro";
+import Wysiwyg from "../../common/shared/Wysiwyg.astro";
+import "./ready.scss";
+
+import { Image } from "astro:assets";
+
+const { title, content, contactInformation, mainLogo } = Astro.props.data;
+const imageSrc = mainLogo?.node?.sourceUrl;
+const imageAlt = mainLogo?.node?.altText || "";
+---
+
+<div class="ready">
+  <Wrapper classes="ready-wrapper">
+    <div class="ready-title">
+      <h2>{title}</h2>
+    </div>
+    <div class="ready-content" set:html={content} />
+    <Wysiwyg classes="ready-contact-information">
+      <div set:html={contactInformation} />
+    </Wysiwyg>
+    <div class="ready-logo">
+      <Image
+        src={imageSrc}
+        alt={imageAlt}
+        format="webp"
+        widths={[800, 1200, 1600, 2000]}
+        sizes="100vw"
+        loading="eager"
+        inferSize={true}
+        class=""
+      />
+    </div>
+  </Wrapper>
+</div>
