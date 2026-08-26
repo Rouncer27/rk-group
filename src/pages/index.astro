@@ -4,6 +4,7 @@ import PageIntro from "../components/Home/PageIntro/PageIntro.astro";
 import ImageByContent from "../components/Home/ImageByContent/ImageByContent.astro";
 import Difference from "../components/Home/Difference/Difference.astro";
 import ServicesDisplay from "../components/Home/ServicesDisplay/ServicesDisplay.astro";
+import OurProcess from "../components/Home/OurProcess/OurProcess.astro";
 
 import { Page_Seo_Query } from "../data/page/queries";
 import {
@@ -12,6 +13,7 @@ import {
   Difference_Query,
   Services_Display_Query,
   All_Services_Query,
+  OurProcess_Query,
 } from "../data/home/queries";
 
 const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
@@ -29,6 +31,7 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 			  		${Image_By_Content_Query}
 			  		${Difference_Query}
 			  		${Services_Display_Query}
+					${OurProcess_Query}
             	}
           	}
 			${All_Services_Query}
@@ -55,4 +58,5 @@ const {
   <ImageByContent data={homeTemplate.imageByContent} />
   <Difference data={homeTemplate.difference} />
   <ServicesDisplay data={homeTemplate.servicesDisplay} services={services} />
+  <OurProcess data={homeTemplate.ourProcess} />
 </Layout>

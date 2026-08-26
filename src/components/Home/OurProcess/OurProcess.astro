@@ -1,0 +1,53 @@
+---
+// @ts-ignore
+// @ts-nocheck
+import Image from "astro/components/Image.astro";
+import Wrapper from "../../common/shared/Wrapper.astro";
+import "./ourProcess.scss";
+
+import { Image } from "astro:assets";
+
+const { title, steps } = Astro.props.data;
+---
+
+<div class="our-process">
+  <Wrapper classes="our-process-wrapper">
+    <div class="our-process-title">
+      <h2>{title}</h2>
+    </div>
+    <div class="our-process-steps">
+      {
+        steps.map((step, index) => {
+          const imageSrc = step.icon?.node?.sourceUrl;
+          const imageAlt = step.icon?.node?.altText || "";
+          return (
+            <div class="our-process-step">
+              <div class="our-process-step-innner">
+                <div class="our-process-step-icon">
+                  <div class="our-process-step-icon-container">
+                    <Image
+                      src={imageSrc}
+                      alt={imageAlt}
+                      format="webp"
+                      widths={[800, 1200, 1600, 2000]}
+                      sizes="100vw"
+                      loading="eager"
+                      inferSize={true}
+                      class=""
+                    />
+                  </div>
+                </div>
+                <div class="our-process-step-name">
+                  <h3>
+                    <span>{index + 1}. </span>
+                    {step.name}
+                  </h3>
+                </div>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </Wrapper>
+</div>

@@ -81,3 +81,33 @@ export const All_Services_Query = `
     }
 
 `;
+
+export const OurProcess_Query = `
+    ourProcess: ourProcessComponent {
+        title
+        steps {
+            name
+            content
+            icon {
+                node {
+                    sourceUrl
+                    altText
+                    mediaDetails {
+                        width
+                        height
+                    }
+                }
+            }
+            iconRollover {
+                node {
+                    sourceUrl
+                    altText
+                    mediaDetails {
+                        width
+                        height
+                    }
+                }
+            }
+        }
+    }
+`;
