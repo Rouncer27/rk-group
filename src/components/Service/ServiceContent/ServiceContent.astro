@@ -2,6 +2,7 @@
 import Wrapper from "../../common/shared/Wrapper.astro";
 import Wysiwyg from "../../common/shared/Wysiwyg.astro";
 import "./serviceContent.scss";
+import logoIcon from "../../../assets/logo-icon-green.png";
 
 const { title, content } = Astro.props.data;
 ---
@@ -15,4 +16,7 @@ const { title, content } = Astro.props.data;
       <div set:html={content} />
     </Wysiwyg>
   </Wrapper>
+  <div class="service-content-logo-icon">
+    <img src={logoIcon.src} alt={"RK Group"} />
+  </div>
 </div>

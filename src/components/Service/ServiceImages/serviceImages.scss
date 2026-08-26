@@ -1,0 +1,57 @@
+@use "../../../styles/abstracts/" as *;
+@use "../../../styles/global/headlines";
+@use "../../../styles/global/paragraphs";
+
+.service-images {
+  background-color: $tertiaryColor;
+  padding-bottom: 2.5rem;
+  &-wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+
+  &-image {
+    position: relative;
+    width: calc(30% - 1.5rem);
+    min-height: 40rem;
+
+    &.image-first {
+      margin-right: 1.5rem;
+    }
+
+    &.long-image {
+      width: calc(40% - 1.5rem);
+      margin-left: 0.75rem;
+      margin-right: 0.75rem;
+    }
+
+    &.image-last {
+      margin-left: 1.5rem;
+    }
+
+    &-container {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      z-index: 1;
+      overflow: hidden;
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        z-index: 1;
+      }
+    }
+  }
+}

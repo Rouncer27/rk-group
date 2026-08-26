@@ -1,7 +1,37 @@
 ---
+// @ts-ignore
+// @ts-nocheck
 import "./serviceImages.scss";
+import { Image } from "astro:assets";
+
+const { images } = Astro.props.data;
 ---
 
-<div>
-  <h1>Service Images</h1>
+<div class="service-images">
+  <div class="service-images-wrapper">
+    {
+      images.map((image, index) => {
+        const imageSrc = image.image?.node?.sourceUrl;
+        const imageAlt = image.image?.node?.altText || "";
+        return (
+          <div
+            class={`service-images-image${index === 1 ? " long-image" : index === 0 ? " image-first" : index === 2 ? " image-last" : ""}`}
+          >
+            <div class="service-images-image-container">
+              <Image
+                src={imageSrc}
+                alt={imageAlt}
+                format="webp"
+                widths={[800, 1200, 1600, 2000]}
+                sizes="100vw"
+                loading="eager"
+                inferSize={true}
+                class=""
+              />
+            </div>
+          </div>
+        );
+      })
+    }
+  </div>
 </div>
