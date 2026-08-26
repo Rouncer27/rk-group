@@ -1,0 +1,86 @@
+---
+// @ts-ignore
+// @ts-nocheck
+import Layout from "../../layouts/Layout.astro";
+
+import { Page_Seo_Query } from "../../data/page/queries";
+
+export async function getStaticPaths() {
+  const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      query: `
+        query servicesQuery {
+            services(first: 999999) {
+                nodes {
+                    slug
+                    uri
+                }
+            }
+        }
+      `,
+    }),
+  });
+
+  const { data } = await response.json();
+  const allServices = data.services.nodes;
+  return allServices.map((service, index) => {
+    return {
+      params: { slug: `${service.slug}` },
+      props: {
+        next:
+          index === 0
+            ? null
+            : {
+                slug: allServices[index - 1].slug,
+                title: allServices[index - 1].title,
+              },
+        prev:
+          index === allServices.length - 1
+            ? null
+            : {
+                slug: allServices[index + 1].slug,
+                title: allServices[index + 1].title,
+              },
+      },
+    };
+  });
+}
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+    query serviceQuery($id: ID!) {
+        service(idType: URI, id: $id) {
+          ${Page_Seo_Query}
+          title
+          date
+          slug
+        }
+    }
+    `,
+    variables: {
+      id: Astro.params["slug"],
+    },
+  }),
+});
+
+const {
+  data: { service },
+} = await response.json();
+---
+
+<Layout
+  metaImg={service.seoMetaTags.seoMetaInformation.metaImage.sourceUrl}
+  metaTitle={service.seoMetaTags.seoMetaInformation.metaTitle}
+  metaDescription={service.seoMetaTags.seoMetaInformation.metaDescription}
+>
+  <h1>{service.title}</h1>
+</Layout>
