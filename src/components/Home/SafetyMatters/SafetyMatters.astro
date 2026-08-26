@@ -19,10 +19,10 @@ const imageSrc = heroImage?.node?.sourceUrl;
 const imageAlt = heroImage?.node?.altText || "";
 ---
 
-<div>
-  <Wrapper>
-    <div>
-      <div class="">
+<div class="safety-matters">
+  <div class="safety-matters-wrapper">
+    <div class="safety-matters-hero">
+      <div class="safety-matters-hero-image">
         <Image
           src={imageSrc}
           alt={imageAlt}
@@ -34,43 +34,48 @@ const imageAlt = heroImage?.node?.altText || "";
           class=""
         />
       </div>
-      <div>
-        <h2>{heroTitle}</h2>
+      <div class="safety-matters-hero-text">
+        <div class="safety-matters-hero-title">
+          <h2>{heroTitle}</h2>
+        </div>
+        <div class="safety-matters-hero-content" set:html={heroContent} />
+        <div class="safety-matters-hero-bold" set:html={heroBold} />
       </div>
-      <div set:html={heroContent} />
-      <div set:html={heroBold} />
+      <div class="safety-matters-hero-background"></div>
     </div>
 
-    <div>
-      <div>
-        <h2>{logosTitle}</h2>
-      </div>
-      <div set:html={logosContent} />
-      <div>
-        {
-          safetyLogos.map((logo) => {
-            const logoSrc = logo.logo?.node?.sourceUrl;
-            const logoAlt = logo.logo?.node?.altText || "";
+    <div class="safety-matters-logos">
+      <Wrapper>
+        <div class="safety-matters-logos-title">
+          <h2>{logosTitle}</h2>
+        </div>
+        <div class="safety-matters-logos-content" set:html={logosContent} />
+        <div class="safety-matters-logos-container">
+          {
+            safetyLogos.map((logo) => {
+              const logoSrc = logo.logo?.node?.sourceUrl;
+              const logoAlt = logo.logo?.node?.altText || "";
 
-            return (
-              <div class="">
-                <div>
-                  <Image
-                    src={logoSrc}
-                    alt={logoAlt}
-                    format="webp"
-                    widths={[800, 1200, 1600, 2000]}
-                    sizes="100vw"
-                    loading="eager"
-                    inferSize={true}
-                    class=""
-                  />
+              return (
+                <div class="safety-matters-logos-logo">
+                  <div class="safety-matters-logos-logo-wrapper">
+                    <Image
+                      src={logoSrc}
+                      alt={logoAlt}
+                      format="webp"
+                      widths={[800, 1200, 1600, 2000]}
+                      sizes="100vw"
+                      loading="eager"
+                      inferSize={true}
+                      class=""
+                    />
+                  </div>
                 </div>
-              </div>
-            );
-          })
-        }
-      </div>
+              );
+            })
+          }
+        </div>
+      </Wrapper>
     </div>
-  </Wrapper>
+  </div>
 </div>
