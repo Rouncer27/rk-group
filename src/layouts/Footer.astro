@@ -1,49 +1,13 @@
 ---
+// @ts-ignore
+// @ts-nocheck
 import Wrapper from "../components/common/shared/Wrapper.astro";
-import SocialMediaLinks from "../components/common/SocialMedia/SocialMediaLinks.astro";
 
 import "./footer.scss";
-
-import {
-  Logo_Options_Query,
-  Social_Media_Links_Query,
-} from "../data/footer/queries";
-import FooterLogo from "../components/common/Logos/FooterLogo.astro";
-
-const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/graphql`, {
-  method: "POST",
-  headers: {
-    "content-type": "application/json",
-  },
-  body: JSON.stringify({
-    query: `
-        query headerQuery {
-          ${Logo_Options_Query}
-          ${Social_Media_Links_Query}
-        }
-    `,
-  }),
-});
-const {
-  data: {
-    footerLogo: { logoOptions },
-    socialMediaLinks,
-  },
-} = await response.json();
 ---
 
 <footer class="footer">
-  <div class="footer-strip"></div>
-  <Wrapper wrapType="big" classes="footer-wrapper">
-    <div class="footer-logo">
-      <div class="footer-logo__container">
-        <h2><a href="/"><FooterLogo data={logoOptions} /></a></h2>
-      </div>
-    </div>
-    <div class="footer-nav"></div>
-    <div class="footer-social">
-      <SocialMediaLinks data={socialMediaLinks} />
-    </div>
+  <Wrapper classes="footer-wrapper">
     <div class="footer-policy">
       <ul>
         <li>
@@ -51,5 +15,13 @@ const {
         </li>
       </ul>
     </div>
+    <div class="footer-copy">
+      <p>Copyright © <span id=" year"></span> RK Group Inc.</p>
+    </div>
   </Wrapper>
 </footer>
+
+<script>
+  const yearSpan = document.getElementById("year");
+  yearSpan.innerHTML = `${new Date().getFullYear()}`;
+</script>
