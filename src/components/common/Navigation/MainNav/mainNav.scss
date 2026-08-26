@@ -1,4 +1,5 @@
 @use "../../../../styles/global/paragraphs";
+@use "../../../../styles/global/headlines";
 @use "../../../../styles/global/buttons";
 @use "../../../../styles/abstracts/" as *;
 
@@ -19,7 +20,7 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-end;
 
       @media (min-width: 768px) {
         padding-left: 0rem;
@@ -30,7 +31,7 @@
       }
 
       li {
-        @extend .p-two;
+        @extend .hl-three;
         margin: 0 1rem;
 
         @media (min-width: 1025px) {
@@ -38,12 +39,12 @@
         }
 
         a {
-          @extend .p-two;
+          @extend .hl-three;
           display: inline-block;
           padding: 1.5rem 0.5rem;
           border-top: 0.2rem solid transparent;
           border-bottom: 0.2rem solid transparent;
-          color: $whiteColor;
+          color: $tertiaryColor;
           text-transform: uppercase;
 
           @media (min-width: 1025px) {
@@ -51,9 +52,9 @@
           }
 
           &:hover {
-            color: $accentColor;
-            border-top-color: $accentColor;
-            border-bottom-color: $accentColor;
+            color: $secondaryColor;
+            border-top-color: $secondaryColor;
+            border-bottom-color: $secondaryColor;
           }
         }
 
