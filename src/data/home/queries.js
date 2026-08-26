@@ -111,3 +111,36 @@ export const OurProcess_Query = `
         }
     }
 `;
+
+export const Safety_Matters_Query = `
+    safetyMatters: safetyMattersComponent {
+        heroTitle
+        heroContent
+        heroBold
+        heroImage {
+            node {
+                sourceUrl
+                altText
+                mediaDetails {
+                    width
+                    height
+                }
+            }
+        }
+
+        logosTitle
+        logosContent
+        safetyLogos {
+            logo {
+                node {
+                    sourceUrl
+                    altText
+                    mediaDetails {
+                        width
+                        height
+                    }
+                }
+            }
+        }
+    }
+`;
