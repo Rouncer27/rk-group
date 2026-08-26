@@ -9,7 +9,8 @@
 
     h2 {
       @extend .hl-one;
-      color: $accentColor;
+      color: $tertiaryColor;
+      text-transform: uppercase;
     }
   }
 
