@@ -1,0 +1,77 @@
+@use "../../../styles/abstracts/" as *;
+@use "../../../styles/global/headlines";
+@use "../../../styles/global/paragraphs";
+
+.service-post-nav {
+  background-color: $tertiaryColor;
+
+  padding-bottom: 5rem;
+
+  &-wrapper {
+    border-top: 0.1rem solid $whiteColor;
+  }
+
+  a {
+    @extend .p-two;
+    color: $whiteColor;
+    text-transform: uppercase;
+
+    &:hover {
+      color: $secondaryColor;
+    }
+
+    span {
+      display: inline-block;
+    }
+  }
+
+  &-prev {
+    width: calc(33.333333%);
+
+    @media (min-width: 768px) {
+      padding-left: 5rem;
+    }
+
+    @media (min-width: 1025px) {
+      padding-left: 10rem;
+    }
+
+    &-alone {
+      width: calc(66.666666%);
+    }
+
+    a {
+      span {
+        padding-right: 1rem;
+      }
+    }
+  }
+
+  &-home {
+    width: calc(33.333333%);
+    text-align: center;
+  }
+
+  &-next {
+    width: calc(33.333333%);
+    text-align: right;
+
+    @media (min-width: 768px) {
+      padding-right: 5rem;
+    }
+
+    @media (min-width: 1025px) {
+      padding-right: 10rem;
+    }
+
+    &-alone {
+      width: calc(66.666666%);
+    }
+
+    a {
+      span {
+        padding-left: 1rem;
+      }
+    }
+  }
+}
