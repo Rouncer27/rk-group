@@ -13,6 +13,8 @@ html {
   box-sizing: border-box;
   font-size: 62.5%;
   overflow-x: hidden !important;
+  scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
 }
 
 body {
