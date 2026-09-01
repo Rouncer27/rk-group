@@ -35,6 +35,7 @@
         @extend .hl-one;
         color: $whiteColor;
         text-align: center;
+        text-transform: uppercase;
       }
     }
   }
@@ -83,7 +84,10 @@
 
         h3 {
           @extend .hl-two;
+          margin-top: 0;
           color: $whiteColor;
+          font-weight: normal;
+          text-transform: uppercase;
         }
       }
     }

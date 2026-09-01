@@ -3,6 +3,7 @@
 @use "../../../styles/global/paragraphs";
 
 .difference {
+  background-color: $accentColor;
   &-title {
     width: 100%;
     text-align: center;

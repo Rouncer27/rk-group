@@ -46,6 +46,7 @@
     ul,
     li {
       @extend .p-two;
+      font-weight: normal !important;
       color: $whiteColor;
     }
 
@@ -53,7 +54,14 @@
       color: $whiteColor !important;
     }
 
+    a {
+      &:hover {
+        color: $accentColor !important;
+      }
+    }
+
     li {
+      margin: 0 !important;
       color: $whiteColor !important;
 
       &::before {
