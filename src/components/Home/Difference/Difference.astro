@@ -27,7 +27,11 @@ import arrowRight from "../../../assets/arrow-right.png";
             <div class="difference-point-title">
               <h3>{point.title}</h3>
               <div class="difference-point-title-arrow">
-                <img src={arrow.src} alt={"Green Arrow"} />
+                <img
+                  class="difference-point-arrow-image"
+                  src={arrow.src}
+                  alt={"Green Arrow"}
+                />
               </div>
             </div>
             <div class="difference-point-content" set:html={point.content} />
@@ -37,3 +41,68 @@ import arrowRight from "../../../assets/arrow-right.png";
     }
   </Wrapper>
 </div>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+
+  const points = document.querySelectorAll(".difference-point");
+
+  if (!prefersReducedMotion) {
+    points.forEach((point) => {
+      const title = point.querySelector(".difference-point-title h3");
+      const arrow = point.querySelector(".difference-point-arrow-image");
+      const content = point.querySelector(".difference-point-content");
+      const isReverse = point.classList.contains("difference-point-reverse");
+
+      const direction = isReverse ? 1 : -1;
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: point,
+          start: "top 60%",
+          toggleActions: "play none none none",
+        },
+      });
+
+      if (title) {
+        tl.from(title, {
+          x: direction * 80,
+          opacity: 0,
+          duration: 0.8,
+          ease: "back.out(1.4)",
+        });
+      }
+
+      if (arrow) {
+        tl.from(
+          arrow,
+          {
+            x: direction * 60,
+            opacity: 0,
+            duration: 0.8,
+            ease: "back.out(2.5)",
+          },
+          "-=0.7",
+        );
+      }
+
+      if (content) {
+        tl.from(
+          content,
+          {
+            x: direction * -25,
+            opacity: 0,
+            duration: 0.7,
+            ease: "power3.out",
+          },
+          "-=0.4",
+        );
+      }
+    });
+  }
+</script>

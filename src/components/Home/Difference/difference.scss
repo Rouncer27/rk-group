@@ -47,6 +47,7 @@
         width: 100%;
         color: $primaryColor;
         text-transform: uppercase;
+        will-change: transform, opacity;
       }
 
       &-arrow {
@@ -70,12 +71,14 @@
           object-fit: cover;
           object-position: center;
           z-index: 1;
+          will-change: transform, opacity;
         }
       }
     }
 
     &-content {
       width: calc(100%);
+      will-change: transform, opacity;
 
       @media (min-width: 768px) {
         width: calc(100% - 50.9rem);
