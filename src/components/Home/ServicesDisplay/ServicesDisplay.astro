@@ -74,3 +74,58 @@ const imageAlt = logo?.node?.altText || "";
     </div>
   ) : null
 }
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+
+  const header = document.querySelector(".services-display-header");
+
+  const servicesContainer = document.querySelector(
+    ".services-display-container",
+  );
+
+  const serviceCards = document.querySelectorAll(".services-display-service");
+
+  if (!prefersReducedMotion) {
+    if (header) {
+      gsap.from(header, {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+
+        scrollTrigger: {
+          trigger: header,
+          markers: false,
+          start: "top 60%",
+          toggleActions: "play none none none",
+        },
+      });
+    }
+    if (servicesContainer && serviceCards.length) {
+      gsap.from(serviceCards, {
+        y: 80,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: {
+          each: 0.25,
+          from: "start",
+        },
+
+        scrollTrigger: {
+          trigger: servicesContainer,
+          markers: false,
+          start: "top 60%",
+          toggleActions: "play none none none",
+        },
+      });
+    }
+  }
+</script>
