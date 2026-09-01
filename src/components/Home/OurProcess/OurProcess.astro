@@ -80,23 +80,46 @@ const { title, steps } = Astro.props.data;
 
     if (!inner) return;
 
-    const enter = () => {
+    let isFlipped = false;
+
+    const flip = () => {
+      isFlipped = !isFlipped;
+
       gsap.to(inner, {
-        rotationY: 180,
-        duration: 0.5,
+        rotationY: isFlipped ? 180 : 0,
+        duration: 0.7,
         ease: "power2.inOut",
       });
     };
 
-    const leave = () => {
-      gsap.to(inner, {
-        rotationY: 0,
-        duration: 0.5,
-        ease: "power2.inOut",
-      });
-    };
+    // Desktop: hover
+    card.addEventListener("mouseenter", () => {
+      if (window.matchMedia("(hover: hover)").matches) {
+        gsap.to(inner, {
+          rotationY: 180,
+          duration: 0.7,
+          ease: "power2.inOut",
+        });
+      }
+    });
 
-    card.addEventListener("mouseenter", enter);
-    card.addEventListener("mouseleave", leave);
+    card.addEventListener("mouseleave", () => {
+      if (window.matchMedia("(hover: hover)").matches) {
+        isFlipped = false;
+
+        gsap.to(inner, {
+          rotationY: 0,
+          duration: 0.7,
+          ease: "power2.inOut",
+        });
+      }
+    });
+
+    // Mobile/tablet: tap
+    card.addEventListener("click", () => {
+      if (!window.matchMedia("(hover: hover)").matches) {
+        flip();
+      }
+    });
   });
 </script>
