@@ -15,8 +15,21 @@
     text-align: center;
 
     h1 {
+      @extend .hl-one;
       color: $tertiaryColor;
       text-transform: uppercase;
+      overflow: hidden;
+    }
+
+    &-word-wrapper {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: top;
+    }
+
+    &-word {
+      display: inline-block;
+      will-change: transform, opacity;
     }
   }
 

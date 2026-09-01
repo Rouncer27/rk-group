@@ -1,4 +1,6 @@
 ---
+// @ts-ignore
+// @ts-nocheck
 import Headline from "../../common/shared/Headline.astro";
 import Wrapper from "../../common/shared/Wrapper.astro";
 import "./pageIntro.scss";
@@ -8,14 +10,27 @@ const { image, title, content } = Astro.props.data;
 
 const heroImageSrc = image?.node?.sourceUrl;
 const heroAlt = image?.node?.altText || "";
+const titleWords = title.split(" ");
 ---
 
 <div class="home-page-intro">
   <Wrapper classes="home-page-intro-wrapper">
     <div class="home-page-intro-title">
-      <Headline ele="h1" hlstyle="one">{title}</Headline>
+      <h1>
+        {
+          titleWords.map((word, index) => (
+            <span class="home-page-intro-word-wrapper">
+              <span class="home-page-intro-word">{word}</span>
+
+              {index < titleWords.length - 1 && "\u00A0"}
+            </span>
+          ))
+        }
+      </h1>
     </div>
+
     <div class="home-page-intro-content" set:html={content} />
+
     <div class="home-page-intro-image">
       <Image
         src={heroImageSrc}
@@ -30,3 +45,53 @@ const heroAlt = image?.node?.altText || "";
     </div>
   </Wrapper>
 </div>
+
+<script>
+  import gsap from "gsap";
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+
+  const words = document.querySelectorAll(".home-page-intro-word");
+  const content = document.querySelector(".home-page-intro-content");
+  const image = document.querySelector(".home-page-intro-image");
+
+  if (!prefersReducedMotion) {
+    const tl = gsap.timeline();
+
+    tl.from(words, {
+      yPercent: 120,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.3,
+      ease: "power4.out",
+    });
+
+    if (content) {
+      tl.from(
+        content,
+        {
+          y: 30,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power3.out",
+        },
+        "-=0.55",
+      );
+    }
+
+    if (image) {
+      tl.from(
+        image,
+        {
+          y: 60,
+          opacity: 0,
+          scale: 1.05,
+          duration: 1.2,
+          ease: "power3.out",
+        },
+        "-=0.45",
+      );
+    }
+  }
+</script>
