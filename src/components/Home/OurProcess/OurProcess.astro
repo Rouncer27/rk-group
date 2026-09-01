@@ -55,7 +55,7 @@ const { title, steps } = Astro.props.data;
                     <div
                       class="our-process-step-content"
                       set:html={step.content}
-                    ></div>
+                    />
                   </div>
                 </div>
               </div>
@@ -83,7 +83,7 @@ const { title, steps } = Astro.props.data;
     const enter = () => {
       gsap.to(inner, {
         rotationY: 180,
-        duration: 0.7,
+        duration: 0.5,
         ease: "power2.inOut",
       });
     };
@@ -91,7 +91,7 @@ const { title, steps } = Astro.props.data;
     const leave = () => {
       gsap.to(inner, {
         rotationY: 0,
-        duration: 0.7,
+        duration: 0.5,
         ease: "power2.inOut",
       });
     };
