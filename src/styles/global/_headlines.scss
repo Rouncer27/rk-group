@@ -28,7 +28,6 @@
 .hl-three {
   @extend .headline-all;
   @include utils.font-sizer(2, 2.4, 76.8, 150, 2);
-  font-family: abstracts.$primaryFont;
   line-height: 1.25;
   font-weight: 500;
 }
@@ -36,6 +35,5 @@
 .hl-four {
   @extend .headline-all;
   @include utils.font-sizer(1.8, 2.2, 76.8, 150, 1.8);
-  font-family: abstracts.$primaryFont;
   line-height: 1.25;
 }
