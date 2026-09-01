@@ -1,7 +1,6 @@
 ---
 // @ts-ignore
 // @ts-nocheck
-import Headline from "../../common/shared/Headline.astro";
 import Wrapper from "../../common/shared/Wrapper.astro";
 import "./pageIntro.scss";
 import { Image } from "astro:assets";
@@ -18,11 +17,9 @@ const titleWords = title.split(" ");
     <div class="home-page-intro-title">
       <h1>
         {
-          titleWords.map((word, index) => (
+          titleWords.map((word) => (
             <span class="home-page-intro-word-wrapper">
-              <span class="home-page-intro-word">{word}</span>
-
-              {index < titleWords.length - 1 && "\u00A0"}
+              <span class="home-page-intro-word"> {word} </span>{" "}
             </span>
           ))
         }
