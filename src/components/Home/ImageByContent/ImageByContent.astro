@@ -47,3 +47,106 @@ const { section } = Astro.props.data;
     }
   </Wrapper>
 </div>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+
+  const blocks = document.querySelectorAll(".image-content-block");
+
+  if (!prefersReducedMotion) {
+    blocks.forEach((block) => {
+      const title = block.querySelector(".image-content-block-main-title");
+
+      const content = block.querySelector(".image-content-block-main-content");
+
+      const imageContainer = block.querySelector(
+        ".image-content-block-image-container",
+      );
+
+      const image = block.querySelector(
+        ".image-content-block-image-container img",
+      );
+
+      const isReverse = block.classList.contains("image-content-block-reverse");
+      const contentX = isReverse ? 80 : -80;
+      const imageX = isReverse ? -40 : 40;
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: block,
+          start: "top 50%",
+          markers: false,
+          toggleActions: "play none none none",
+        },
+      });
+
+      // NEW: Content title
+      if (title) {
+        tl.from(title, {
+          x: contentX,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power3.out",
+        });
+      }
+
+      // NEW: Paragraph/content
+      if (content) {
+        tl.from(
+          content,
+          {
+            x: contentX * 0.6,
+            opacity: 0,
+            duration: 0.7,
+            ease: "power3.out",
+          },
+          "-=0.55",
+        );
+      }
+
+      // NEW: Image container slides in slightly
+      if (imageContainer) {
+        tl.from(
+          imageContainer,
+          {
+            x: imageX,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out",
+          },
+          "-=0.65",
+        );
+      }
+
+      // NEW: Image itself has a subtle scale reveal
+      if (image) {
+        gsap.from(image, {
+          scale: 1.08,
+          duration: 1.4,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: block,
+            start: "top 75%",
+            toggleActions: "play none none none",
+          },
+        });
+      }
+    });
+  } else {
+    // NEW: If reduced motion is enabled,
+    // make everything immediately visible.
+    gsap.set(
+      ".image-content-block-main-title, .image-content-block-main-content, .image-content-block-image-container",
+      {
+        clearProps: "all",
+      },
+    );
+  }
+</script>
