@@ -9,6 +9,11 @@
     flex-direction: row;
     border-bottom: 0.2rem solid $tertiaryColor;
     width: 100%;
+    margin-bottom: 4rem;
+
+    @media (min-width: 768px) {
+      margin-bottom: 0;
+    }
 
     &-reverse {
       flex-direction: row-reverse;
@@ -19,8 +24,12 @@
     }
 
     &-main {
-      width: calc(60%);
-      padding: 5rem;
+      width: calc(100%);
+
+      @media (min-width: 768px) {
+        width: calc(60%);
+        padding: 5rem;
+      }
 
       h2 {
         @extend .hl-one;
@@ -36,7 +45,13 @@
 
     &-image {
       position: relative;
-      width: calc(40%);
+      width: calc(100%);
+      min-height: 45rem;
+
+      @media (min-width: 768px) {
+        width: calc(40%);
+        min-height: 100%;
+      }
 
       &-container {
         position: absolute;

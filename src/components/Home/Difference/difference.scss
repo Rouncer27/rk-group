@@ -20,16 +20,26 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin: 2rem 0;
+    margin: 5rem 0;
+
+    @media (min-width: 768px) {
+      margin: 2rem 0;
+    }
 
     &-title {
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
-      width: calc(50.9rem);
-      height: 26.3rem;
-      padding: 4rem;
+      width: 100%;
+      margin-bottom: 1rem;
+
+      @media (min-width: 768px) {
+        width: calc(50.9rem);
+        height: 26.3rem;
+        margin-bottom: 0;
+        padding: 4rem;
+      }
 
       h3 {
         @extend .hl-two;
@@ -40,11 +50,16 @@
       }
 
       &-arrow {
+        display: none;
         position: absolute;
         top: 0;
         left: 0;
         width: 50.9rem;
         height: 26.3rem;
+
+        @media (min-width: 768px) {
+          display: block;
+        }
 
         img {
           position: absolute;
@@ -60,8 +75,12 @@
     }
 
     &-content {
-      width: calc(100% - 50.9rem);
-      padding: 4rem;
+      width: calc(100%);
+
+      @media (min-width: 768px) {
+        width: calc(100% - 50.9rem);
+        padding: 4rem;
+      }
 
       p {
         color: $tertiaryColor;
@@ -76,7 +95,9 @@
       flex-direction: row-reverse;
 
       h3 {
-        padding-left: 4rem;
+        @media (min-width: 768px) {
+          padding-left: 4rem;
+        }
       }
     }
   }

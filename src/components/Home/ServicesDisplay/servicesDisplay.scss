@@ -14,13 +14,22 @@
     display: flex;
 
     &-logo {
-      width: calc(20rem);
-      padding: 2rem;
+      width: calc(100%);
+      padding: 2rem 10rem;
+
+      @media (min-width: 768px) {
+        width: calc(20rem);
+        padding: 2rem;
+      }
     }
 
     &-title {
-      width: calc(100% - 20rem);
-      padding: 2rem;
+      width: calc(100%);
+
+      @media (min-width: 768px) {
+        width: calc(100% - 20rem);
+        padding: 2rem;
+      }
 
       h2 {
         @extend .hl-one;
@@ -42,8 +51,18 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: calc((100% / 3) - 2rem);
+    width: calc(100% - 2rem);
     margin: 5rem 1rem;
+
+    @media (min-width: 768px) {
+      width: calc((100% / 2) - 2rem);
+      margin: 5rem 1rem;
+    }
+
+    @media (min-width: 1024px) {
+      width: calc((100% / 3) - 2rem);
+      margin: 5rem 1rem;
+    }
 
     &-header {
       display: flex;
@@ -85,6 +104,10 @@
           @extend .p-two;
           color: $whiteColor;
           text-transform: uppercase;
+
+          &:hover {
+            color: $primaryColor;
+          }
         }
       }
     }
