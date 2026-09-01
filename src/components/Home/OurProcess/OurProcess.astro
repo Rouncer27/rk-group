@@ -24,26 +24,39 @@ const { title, steps } = Astro.props.data;
 
           return (
             <div class="our-process-step">
-              <div class="our-process-step-innner">
-                <div class="our-process-step-icon">
-                  <div class="our-process-step-icon-container">
-                    <Image
-                      src={imageSrc}
-                      alt={imageAlt}
-                      format="webp"
-                      widths={[800, 1200, 1600, 2000]}
-                      sizes="100vw"
-                      loading="eager"
-                      inferSize={true}
-                      class=""
-                    />
+              <div class="our-process-step-inner">
+                <div class="our-process-step-front">
+                  <div class="our-process-step-front-inner">
+                    <div class="our-process-step-icon">
+                      <div class="our-process-step-icon-container">
+                        <Image
+                          src={imageSrc}
+                          alt={imageAlt}
+                          format="webp"
+                          widths={[800, 1200, 1600, 2000]}
+                          sizes="100vw"
+                          loading="eager"
+                          inferSize={true}
+                          class=""
+                        />
+                      </div>
+                    </div>
+                    <div class="our-process-step-name">
+                      <h3>
+                        <span>{index + 1}. </span>
+                        {step.name}
+                      </h3>
+                    </div>
                   </div>
                 </div>
-                <div class="our-process-step-name">
-                  <h3>
-                    <span>{index + 1}. </span>
-                    {step.name}
-                  </h3>
+
+                <div class="our-process-step-back">
+                  <div class="our-process-step-back-inner">
+                    <div
+                      class="our-process-step-content"
+                      set:html={step.content}
+                    ></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -56,3 +69,34 @@ const { title, steps } = Astro.props.data;
     </div>
   </Wrapper>
 </div>
+
+<script>
+  import gsap from "gsap";
+
+  const cards = document.querySelectorAll(".our-process-step");
+
+  cards.forEach((card) => {
+    const inner = card.querySelector(".our-process-step-inner");
+
+    if (!inner) return;
+
+    const enter = () => {
+      gsap.to(inner, {
+        rotationY: 180,
+        duration: 0.7,
+        ease: "power2.inOut",
+      });
+    };
+
+    const leave = () => {
+      gsap.to(inner, {
+        rotationY: 0,
+        duration: 0.7,
+        ease: "power2.inOut",
+      });
+    };
+
+    card.addEventListener("mouseenter", enter);
+    card.addEventListener("mouseleave", leave);
+  });
+</script>
