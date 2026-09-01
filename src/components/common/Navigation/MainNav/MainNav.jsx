@@ -1,8 +1,55 @@
+import { useEffect } from "react";
 import MainNavItem from "./MainNavItem.jsx";
 import "./mainNav.scss";
+import gsap from "gsap";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+gsap.registerPlugin(ScrollToPlugin);
 
 const MainNav = (props) => {
-  console.log(props);
+  useEffect(() => {
+    const links = document.querySelectorAll('a[href^="/#"]');
+
+    const handleClick = (event) => {
+      const link = event.currentTarget;
+      const href = link.getAttribute("href");
+
+      if (!href) return;
+
+      if (window.location.pathname !== "/") {
+        return;
+      }
+
+      const targetId = href.replace("/#", "");
+      const target = document.getElementById(targetId);
+
+      if (!target) return;
+
+      event.preventDefault();
+
+      gsap.to(window, {
+        duration: 1.2,
+
+        scrollTo: {
+          y: target,
+        },
+
+        ease: "power3.inOut",
+      });
+
+      window.history.pushState(null, "", href);
+    };
+
+    links.forEach((link) => {
+      link.addEventListener("click", handleClick);
+    });
+
+    return () => {
+      links.forEach((link) => {
+        link.removeEventListener("click", handleClick);
+      });
+    };
+  }, []);
+
   return (
     <div className="main-nav">
       <nav role="navigation" aria-label="primary" className="main-nav-top">
@@ -10,6 +57,7 @@ const MainNav = (props) => {
           {props.menuItems.map((item, index) => {
             if (!item.parentId) {
               const currentPage = props.pathname === item.uri;
+
               return (
                 <MainNavItem
                   currentPage={currentPage}
@@ -22,6 +70,7 @@ const MainNav = (props) => {
               return null;
             }
           })}
+
           {props.phoneNumber ? (
             <li className="main-nav-top-list-item phone-number">
               <a href={`tel: ${props.phoneNumber.phoneNumber}`}>
