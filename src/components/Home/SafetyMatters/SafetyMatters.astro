@@ -46,10 +46,9 @@ const imageAlt = heroImage?.node?.altText || "";
 
     <div class="safety-matters-logos">
       <Wrapper>
-        <div class="safety-matters-logos-title">
+        <!-- <div class="safety-matters-logos-title">
           <h2>{logosTitle}</h2>
-        </div>
-        <div class="safety-matters-logos-content" set:html={logosContent} />
+        </div> -->
         <div class="safety-matters-logos-container">
           {
             safetyLogos.map((logo) => {
@@ -75,6 +74,7 @@ const imageAlt = heroImage?.node?.altText || "";
             })
           }
         </div>
+        <div class="safety-matters-logos-content" set:html={logosContent} />
       </Wrapper>
     </div>
   </div>

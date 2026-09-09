@@ -49,6 +49,11 @@
         color: $primaryColor;
         text-transform: uppercase;
         will-change: transform, opacity;
+        text-align: center;
+
+        @media (min-width: 768px) {
+          padding-right: 4rem;
+        }
       }
 
       &-arrow {
@@ -101,6 +106,7 @@
       h3 {
         @media (min-width: 768px) {
           padding-left: 4rem;
+          padding-right: 0;
         }
       }
     }
