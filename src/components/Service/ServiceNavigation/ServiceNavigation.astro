@@ -6,12 +6,12 @@ import Wrapper from "../../common/shared/Wrapper.astro";
 <div class="service-post-nav">
   <Wrapper classes="service-post-nav-wrapper">
     {
-      Astro.props.data.prev !== null ? (
+      Astro.props.data.next !== null ? (
         <div
-          class={`service-post-nav-prev${Astro.props.data.next === null ? " service-post-nav-prev-alone" : ""}`}
+          class={`service-post-nav-prev${Astro.props.data.prev === null ? " service-post-nav-prev-alone" : ""}`}
         >
-          <a href={`/service/${Astro.props.data.prev.slug}`}>
-            <span>&lt;</span>Previous Service
+          <a href={`/service/${Astro.props.data.next.slug}`}>
+            <span>&lt;</span>Next Service
           </a>
         </div>
       ) : null
@@ -20,12 +20,12 @@ import Wrapper from "../../common/shared/Wrapper.astro";
       <a href={`/`}> Home </a>
     </div>
     {
-      Astro.props.data.next !== null ? (
+      Astro.props.data.prev !== null ? (
         <div
-          class={`service-post-nav-next${Astro.props.data.prev === null ? " service-post-nav-next-alone" : ""}`}
+          class={`service-post-nav-next${Astro.props.data.next === null ? " service-post-nav-next-alone" : ""}`}
         >
-          <a href={`/service/${Astro.props.data.next.slug}`}>
-            Next Service<span>&gt;</span>
+          <a href={`/service/${Astro.props.data.prev.slug}`}>
+            Previous Service<span>&gt;</span>
           </a>
         </div>
       ) : null
