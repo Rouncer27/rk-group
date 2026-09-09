@@ -55,6 +55,8 @@
     }
 
     a {
+      color: $whiteColor !important;
+
       &:hover {
         color: $accentColor !important;
       }
