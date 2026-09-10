@@ -1,0 +1,8 @@
+https://www.rk-group.ca/ https://rk-group.ca/:splat 301!
+http://www.rk-group.ca/ https://rk-group.ca/:splat 301!
+http://rk-group.ca/ https://rk-group.ca/:splat 301!
+
+https://rk-group.netlify.app/* https://rk-group.ca/:splat 301!
+
+
+/disclaimer/ /privacy-policy/
