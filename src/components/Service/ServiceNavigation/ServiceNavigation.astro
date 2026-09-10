@@ -11,7 +11,7 @@ import Wrapper from "../../common/shared/Wrapper.astro";
           class={`service-post-nav-prev${Astro.props.data.prev === null ? " service-post-nav-prev-alone" : ""}`}
         >
           <a href={`/service/${Astro.props.data.next.slug}`}>
-            <span>&lt;</span>Next Service
+            <span>&lt;</span>Previous Service
           </a>
         </div>
       ) : null
@@ -25,7 +25,7 @@ import Wrapper from "../../common/shared/Wrapper.astro";
           class={`service-post-nav-next${Astro.props.data.next === null ? " service-post-nav-next-alone" : ""}`}
         >
           <a href={`/service/${Astro.props.data.prev.slug}`}>
-            Previous Service<span>&gt;</span>
+            Next Service<span>&gt;</span>
           </a>
         </div>
       ) : null
