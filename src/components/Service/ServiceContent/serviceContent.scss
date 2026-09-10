@@ -34,12 +34,12 @@
   }
 
   &-main {
-    position: relative;
-    width: 100%;
-    margin-right: auto;
-    margin-left: 0;
-    max-width: 90rem;
-    z-index: 100;
+    position: relative !important;
+    width: 100% !important;
+    margin-right: auto !important;
+    margin-left: 0 !important;
+    max-width: 90rem !important;
+    z-index: 100 !important;
 
     p,
     a,
