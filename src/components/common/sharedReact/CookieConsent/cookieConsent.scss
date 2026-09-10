@@ -43,7 +43,7 @@
   a {
     @extend .p-one;
     font-weight: bold;
-    color: rgba($accentColor, 1);
+    color: rgba($blackColor, 1);
 
     &:hover {
       color: $accentColor;

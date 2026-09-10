@@ -11,14 +11,14 @@ const CookieConsent = () => {
     let d = new Date();
     let oneYear = new Date(d.getFullYear() + 1, d.getMonth(), d.getDate());
     document.cookie =
-      "sse-cookie-consent=granted; expires=" + oneYear + "; path=/";
+      "rkg-cookie-consent=granted; expires=" + oneYear + "; path=/";
     consentGranted();
   };
 
   const handleDecline = () => {
     setCookies("denied");
     // declined cookie only lasts for the session
-    document.cookie = "sse-cookie-consent=denied; path=/";
+    document.cookie = "rkg-cookie-consent=denied; path=/";
   };
 
   // this waits to load the cookie banner until the component is mounted
