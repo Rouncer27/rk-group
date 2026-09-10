@@ -44,6 +44,11 @@ const {
 } = await response.json();
 ---
 
-<Layout>
+<Layout
+  metaImg={seoMetaTags.seoMetaInformation.metaImage.sourceUrl}
+  metaTitle={seoMetaTags.seoMetaInformation.metaTitle}
+  metaDescription={seoMetaTags.seoMetaInformation.metaDescription}
+  isHome={false}
+>
   <MainContent data={privacyPolicyPage.mainContent} />
 </Layout>
